@@ -10,7 +10,6 @@ import CardHeader from "@mui/material/CardHeader";
 
 import Link from "../src/Link";
 import theme from "../src/theme";
-import Header from "../src/ui/Header";
 
 const mainContainer = {
   [theme.breakpoints.down("sm")]: {

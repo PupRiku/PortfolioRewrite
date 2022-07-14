@@ -7,6 +7,7 @@ import theme from "../src/theme";
 import createEmotionCache from "../src/createEmotionCache";
 import Fonts from "../src/ui/Fonts";
 import Header from "../src/ui/Header";
+import Footer from "../src/ui/Footer";
 
 // Client-side cache, shared for the whole session of the user in the browser.
 const clientSideEmotionCache = createEmotionCache();
@@ -46,6 +47,14 @@ export default function MyApp(props) {
         />
         <Component
           {...pageProps}
+          value={value}
+          setValue={setValue}
+          lifeIndex={lifeIndex}
+          setLifeIndex={setLifeIndex}
+          experienceIndex={experienceIndex}
+          setExperienceIndex={setExperienceIndex}
+        />
+        <Footer
           value={value}
           setValue={setValue}
           lifeIndex={lifeIndex}
