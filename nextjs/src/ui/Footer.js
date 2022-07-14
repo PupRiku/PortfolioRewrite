@@ -118,7 +118,7 @@ export default function Footer({
                   setExperienceIndex(0);
                 }}
               >
-                Resumé
+                Résumé
               </StyledLink>
               <StyledLink
                 item

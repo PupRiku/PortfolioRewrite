@@ -207,7 +207,7 @@ export default function Header({
 
   const experienceOptions = [
     {
-      name: "Resumé",
+      name: "Résumé",
       link: "/resume",
       activeIndex: 3,
       selectedIndex: 0,
