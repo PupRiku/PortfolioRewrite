@@ -1,0 +1,41 @@
+{
+  "name": "nextjs",
+  "version": "5.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "post-update": "echo \"codesandbox preview only, need an update\" && yarn upgrade --latest",
+    "develop": "next dev",
+    "deploy": "next build && next export",
+    "lint:fix": "next lint --fix"
+  },
+  "dependencies": {
+    "@emotion/cache": "latest",
+    "@emotion/react": "latest",
+    "@emotion/server": "latest",
+    "@emotion/styled": "latest",
+    "@mui/icons-material": "latest",
+    "@mui/material": "latest",
+    "fontfaceobserver": "^2.3.0",
+    "moment": "^2.24.0",
+    "next": "latest",
+    "prop-types": "latest",
+    "qs": "^6.10.1",
+    "react": "latest",
+    "react-dom": "latest",
+    "react-lazy-load-image-component": "^1.5.4",
+    "react-markdown": "^8.0.3",
+    "react-moment": "^1.1.2"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "prettier": "^2.3.1"
+  }
+}
