@@ -67,15 +67,6 @@ const theme = createTheme({
       textDecoration: "none",
     },
   },
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 600,
-      md: 1327,
-      lg: 1536,
-      xl: 2000,
-    },
-  },
 });
 
 export default theme;
