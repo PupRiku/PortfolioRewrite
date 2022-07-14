@@ -45,7 +45,7 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
   minHeight: "3em",
   marginTop: "0.5em",
   marginBottom: "4em",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     marginBottom: "1.25",
   },
 }));
@@ -54,7 +54,7 @@ const Logo = styled("svg")(({ theme }) => ({
   color: "white",
   height: "6em",
   textTransform: "none",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("md")]: {
     height: "5.25em",
   },
 }));

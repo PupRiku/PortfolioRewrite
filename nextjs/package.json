@@ -20,7 +20,8 @@
     "next": "latest",
     "prop-types": "latest",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-lazy-load-image-component": "^1.5.4"
   },
   "devDependencies": {
     "eslint": "latest",
