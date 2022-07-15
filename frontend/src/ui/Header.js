@@ -1,44 +1,44 @@
-import React, { useState, useEffect } from "react";
-import Link from "../Link";
+import React, { useState, useEffect } from "react"
+import Link from "../Link"
 
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import useScrollTrigger from "@mui/material/useScrollTrigger";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Button from "@mui/material/Button";
-import MenuItem from "@mui/material/MenuItem";
-import ClickAwayListener from "@mui/material/ClickAwayListener";
-import Grow from "@mui/material/Grow";
-import Paper from "@mui/material/Paper";
-import Popper from "@mui/material/Popper";
-import MenuList from "@mui/material/MenuList";
-import SwipeableDrawer from "@mui/material/SwipeableDrawer";
-import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemText from "@mui/material/ListItemText";
-import Accordion from "@mui/material/Accordion";
-import AccordionSummary from "@mui/material/AccordionSummary";
-import AccordionDetails from "@mui/material/AccordionDetails";
-import Grid from "@mui/material/Grid";
-import useMediaQuery from "@mui/material/useMediaQuery";
+import AppBar from "@mui/material/AppBar"
+import Toolbar from "@mui/material/Toolbar"
+import useScrollTrigger from "@mui/material/useScrollTrigger"
+import Tabs from "@mui/material/Tabs"
+import Tab from "@mui/material/Tab"
+import Button from "@mui/material/Button"
+import MenuItem from "@mui/material/MenuItem"
+import ClickAwayListener from "@mui/material/ClickAwayListener"
+import Grow from "@mui/material/Grow"
+import Paper from "@mui/material/Paper"
+import Popper from "@mui/material/Popper"
+import MenuList from "@mui/material/MenuList"
+import SwipeableDrawer from "@mui/material/SwipeableDrawer"
+import IconButton from "@mui/material/IconButton"
+import List from "@mui/material/List"
+import ListItem from "@mui/material/ListItem"
+import ListItemText from "@mui/material/ListItemText"
+import Accordion from "@mui/material/Accordion"
+import AccordionSummary from "@mui/material/AccordionSummary"
+import AccordionDetails from "@mui/material/AccordionDetails"
+import Grid from "@mui/material/Grid"
+import useMediaQuery from "@mui/material/useMediaQuery"
 
-import { styled, useTheme } from "@mui/material/styles";
+import { styled, useTheme } from "@mui/material/styles"
 
-import MenuIcon from "@mui/icons-material/Menu";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import MenuIcon from "@mui/icons-material/Menu"
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 
 function ElevationScroll(props) {
-  const { children } = props;
+  const { children } = props
   const trigger = useScrollTrigger({
     disableHysteresis: true,
     threshold: 0,
-  });
+  })
 
   return React.cloneElement(children, {
     elevation: trigger ? 4 : 0,
-  });
+  })
 }
 
 const ToolbarMargin = styled("div")(({ theme }) => ({
@@ -48,7 +48,7 @@ const ToolbarMargin = styled("div")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     marginBottom: "1.25",
   },
-}));
+}))
 
 const Logo = styled("svg")(({ theme }) => ({
   color: "white",
@@ -57,7 +57,7 @@ const Logo = styled("svg")(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
     height: "5.25em",
   },
-}));
+}))
 
 const LogoContainer = styled(Button)({
   padding: 0,
@@ -65,25 +65,25 @@ const LogoContainer = styled(Button)({
   "&:hover": {
     backgroundColor: "transparent",
   },
-});
+})
 
 const TabContainer = styled(Tabs)({
   marginLeft: "auto",
-});
+})
 
 const StyledTab = styled(Tab)(({ theme }) => ({
   ...theme.typography.tab,
   minWidth: 10,
   marginLeft: "25px",
   textDecoration: "none",
-}));
+}))
 
 const MenuPaper = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
   color: "white",
   borderRadius: "0px",
   zIndex: 1302,
-}));
+}))
 
 const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   ...theme.typography.tab,
@@ -91,38 +91,38 @@ const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
   "&:hover": {
     opacity: 1,
   },
-}));
+}))
 
 const DrawerIcon = styled(MenuIcon)(({ theme }) => ({
   height: "50px",
   width: "50px",
   color: theme.palette.primary.contrastText,
-}));
+}))
 
 const DrawerIconContainer = styled(IconButton)({
   marginLeft: "auto",
   "&:hover": {
     backgroundColor: "transparent",
   },
-});
+})
 
 const DrawerStyle = styled(SwipeableDrawer)(({ theme }) => ({
   "& .MuiDrawer-paper": {
     backgroundColor: theme.palette.primary.main,
   },
-}));
+}))
 
 const DrawerItemLink = styled(Link)(({ theme }) => ({
   ...theme.typography.tab,
   color: "white",
   opacity: 0.7,
-}));
+}))
 
 const DrawerItemText = styled(ListItemText)(({ theme }) => ({
   ...theme.typography.tab,
   color: "white",
   opacity: 0.7,
-}));
+}))
 
 const DrawerItemSelected = styled(ListItem)({
   "& .MuiListItem-selected": {
@@ -130,11 +130,11 @@ const DrawerItemSelected = styled(ListItem)({
       opacity: 1,
     },
   },
-});
+})
 
 const StyledAppBar = styled(AppBar)(({ theme }) => ({
   zIndex: theme.zIndex.modal + 1,
-}));
+}))
 
 const Expansion = styled(Accordion)(({ theme }) => ({
   backgroundColor: theme.palette.primary.main,
@@ -146,12 +146,12 @@ const Expansion = styled(Accordion)(({ theme }) => ({
   "&::before": {
     backgroundColor: "rgba(0, 0, 0, 0)",
   },
-}));
+}))
 
 const ExpansionDetails = styled(AccordionDetails)(({ theme }) => ({
   padding: 0,
   backgroundColor: theme.palette.primary.light,
-}));
+}))
 
 const ExpansionSummary = styled(AccordionSummary)({
   paddingLeft: "0 24px 0 16px",
@@ -160,7 +160,7 @@ const ExpansionSummary = styled(AccordionSummary)({
   "&:hover": {
     backgroundColor: "rgba(0, 0, 0, 0.08)",
   },
-});
+})
 
 export default function Header({
   value,
@@ -170,38 +170,38 @@ export default function Header({
   experienceIndex,
   setExperienceIndex,
 }) {
-  const theme = useTheme();
-  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent);
-  const matchesMD = useMediaQuery(theme.breakpoints.down("md"));
+  const theme = useTheme()
+  const iOS = process.browser && /iPad|iPhone|iPod/.test(navigator.userAgent)
+  const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
 
-  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false)
 
-  const [anchorEl, setAnchorEl] = useState(null);
-  const [openExperience, setOpenExperience] = useState(false);
-  const [openLife, setOpenLife] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [openExperience, setOpenExperience] = useState(false)
+  const [openLife, setOpenLife] = useState(false)
 
   const handleChange = (e, newValue) => {
-    setValue(newValue);
-  };
+    setValue(newValue)
+  }
 
   const handleClick = (e, tab) => {
-    setAnchorEl(e.currentTarget);
-    tab === "experience" ? setOpenExperience(true) : setOpenLife(true);
-  };
+    setAnchorEl(e.currentTarget)
+    tab === "experience" ? setOpenExperience(true) : setOpenLife(true)
+  }
 
   const handleMenuItemClick = (e, i) => {
-    openExperience ? setOpenExperience(false) : setOpenLife(false);
-    openExperience ? setExperienceIndex(i) : setLifeIndex(i);
-  };
+    openExperience ? setOpenExperience(false) : setOpenLife(false)
+    openExperience ? setExperienceIndex(i) : setLifeIndex(i)
+  }
 
   const handleClose = (e) => {
-    openExperience ? setOpenExperience(false) : setOpenLife(false);
-  };
+    openExperience ? setOpenExperience(false) : setOpenLife(false)
+  }
 
   function handleListKeyDown(event) {
     if (event.key === "Tab") {
-      event.preventDefault();
-      openExperience ? setOpenExperience(false) : setOpenLife(false);
+      event.preventDefault()
+      openExperience ? setOpenExperience(false) : setOpenLife(false)
     }
   }
 
@@ -224,7 +224,7 @@ export default function Header({
       activeIndex: 3,
       selectedIndex: 2,
     },
-  ];
+  ]
 
   const lifeOptions = [
     {
@@ -239,7 +239,7 @@ export default function Header({
       activeIndex: 4,
       selectedIndex: 1,
     },
-  ];
+  ]
 
   const routes = [
     { name: "Home", link: "/", activeIndex: 0 },
@@ -262,31 +262,31 @@ export default function Header({
       mouseOver: (event) => handleClick(event, "life"),
     },
     { name: "Contact Me", link: "/contact", activeIndex: 5 },
-  ];
+  ]
 
-  const path = typeof window !== "undefined" ? window.location.pathname : null;
+  const path = typeof window !== "undefined" ? window.location.pathname : null
 
   const activeIndex = () => {
-    const found = routes.find(({ link }) => link === path);
-    const expFound = experienceOptions.find(({ link }) => link === path);
-    const lifeFound = lifeOptions.find(({ link }) => link === path);
+    const found = routes.find(({ link }) => link === path)
+    const expFound = experienceOptions.find(({ link }) => link === path)
+    const lifeFound = lifeOptions.find(({ link }) => link === path)
 
     if (expFound) {
-      setValue(3);
-      setExperienceIndex(expFound.selectedIndex);
+      setValue(3)
+      setExperienceIndex(expFound.selectedIndex)
     } else if (lifeFound) {
-      setValue(4);
-      setLifeIndex(lifeFound.selectedIndex);
+      setValue(4)
+      setLifeIndex(lifeFound.selectedIndex)
     } else if (found === undefined) {
-      setValue(false);
+      setValue(false)
     } else {
-      setValue(found.activeIndex);
+      setValue(found.activeIndex)
     }
-  };
+  }
 
   useEffect(() => {
-    activeIndex();
-  }, [path]);
+    activeIndex()
+  }, [path])
 
   const tabs = (
     <>
@@ -298,7 +298,7 @@ export default function Header({
       >
         {routes.map((route, index) => (
           <StyledTab
-            key={`${route}${index}`}
+            key={`${route.link}${index}`}
             component={Link}
             href={route.link}
             label={route.name}
@@ -365,13 +365,13 @@ export default function Header({
                 >
                   {lifeOptions.map((option, i) => (
                     <StyledMenuItem
-                      key={`${option}${i}lf`}
+                      key={`${option.link}${i}lf`}
                       component={Link}
                       href={option.link}
                       onClick={(e) => {
-                        handleMenuItemClick(e, i);
-                        setValue(4);
-                        handleClose();
+                        handleMenuItemClick(e, i)
+                        setValue(4)
+                        handleClose()
                       }}
                       selected={
                         i === lifeIndex &&
@@ -410,13 +410,13 @@ export default function Header({
                 >
                   {experienceOptions.map((option, i) => (
                     <StyledMenuItem
-                      key={`${option}${i}xp`}
+                      key={`${option.link}${i}xp`}
                       component={Link}
                       href={option.link}
                       onClick={(e) => {
-                        handleMenuItemClick(e, i);
-                        setValue(3);
-                        handleClose();
+                        handleMenuItemClick(e, i)
+                        setValue(3)
+                        handleClose()
                       }}
                       selected={
                         i === experienceIndex &&
@@ -434,7 +434,7 @@ export default function Header({
         )}
       </Popper>
     </>
-  );
+  )
 
   const drawer = (
     <>
@@ -449,15 +449,15 @@ export default function Header({
         <List disablePadding>
           {routes.map((route) =>
             route.name === "My Experience" ? (
-              <Expansion elevation={0} key={route.name}>
+              <Expansion elevation={0} key={`dr${route.link}`}>
                 <ExpansionSummary
                   expandIcon={<ExpandMoreIcon color="secondary" />}
                 >
                   <ListItemText
                     disableTypography
                     onClick={() => {
-                      setOpenDrawer(false);
-                      setValue(route.activeIndex);
+                      setOpenDrawer(false)
+                      setValue(route.activeIndex)
                     }}
                     sx={{
                       opacity: value === 4 ? 4 : null,
@@ -471,9 +471,8 @@ export default function Header({
                 <ExpansionDetails>
                   <Grid container direction="column">
                     {experienceOptions.map((route) => (
-                      <Grid item>
+                      <Grid item key={`ac${route}${route.lifeIndex}xp`}>
                         <DrawerItemSelected
-                          key={`ac${route}${route.lifeIndex}xp`}
                           divider
                           button
                           component={Link}
@@ -484,8 +483,8 @@ export default function Header({
                             window.location.pathname !== "/experience"
                           }
                           onClick={() => {
-                            setOpenDrawer(false);
-                            setExperienceIndex(route.experienceIndex);
+                            setOpenDrawer(false)
+                            setExperienceIndex(route.experienceIndex)
                           }}
                         >
                           <DrawerItemText disableTypography>
@@ -498,7 +497,7 @@ export default function Header({
                 </ExpansionDetails>
               </Expansion>
             ) : route.name === "My Life" ? (
-              <Expansion elevation={0} key={route.name}>
+              <Expansion elevation={0} key={`dr${route.link}`}>
                 <ExpansionSummary
                   expandIcon={<ExpandMoreIcon color="secondary" />}
                 >
@@ -508,8 +507,8 @@ export default function Header({
                     }}
                     disableTypography
                     onClick={() => {
-                      setOpenDrawer(false);
-                      setValue(route.activeIndex);
+                      setOpenDrawer(false)
+                      setValue(route.activeIndex)
                     }}
                   >
                     <DrawerItemLink href={route.link} color="inherit">
@@ -520,9 +519,8 @@ export default function Header({
                 <ExpansionDetails>
                   <Grid container direction="column">
                     {lifeOptions.map((route) => (
-                      <Grid item>
+                      <Grid item key={`ac${route}${route.lifeIndex}lf`}>
                         <DrawerItemSelected
-                          key={`ac${route}${route.lifeIndex}lf`}
                           divider
                           button
                           component={Link}
@@ -533,8 +531,8 @@ export default function Header({
                             window.location.pathname !== "/life"
                           }
                           onClick={() => {
-                            setOpenDrawer(false);
-                            setLifeIndex(route.lifeIndex);
+                            setOpenDrawer(false)
+                            setLifeIndex(route.lifeIndex)
                           }}
                         >
                           <DrawerItemText disableTypography>
@@ -555,8 +553,8 @@ export default function Header({
                 href={route.link}
                 selected={value === route.activeIndex}
                 onClick={() => {
-                  setOpenDrawer(false);
-                  setValue(route.activeIndex);
+                  setOpenDrawer(false)
+                  setValue(route.activeIndex)
                 }}
               >
                 <DrawerItemText disableTypography>{route.name}</DrawerItemText>
@@ -618,7 +616,7 @@ export default function Header({
         <DrawerIcon />
       </DrawerIconContainer>
     </>
-  );
+  )
 
   return (
     <>
@@ -778,5 +776,5 @@ export default function Header({
       </ElevationScroll>
       <ToolbarMargin />
     </>
-  );
+  )
 }
