@@ -9,25 +9,9 @@ import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import CardActions from "@mui/material/CardActions"
-import parse, { domToReact } from "html-react-parser"
+import parse from "html-react-parser"
 
-import present from "../../../present.json"
-
-const options = {
-  replace: ({ attribs, children }) => {
-    if (!attribs) {
-      return
-    }
-
-    if (attribs.class === "subtitle") {
-      return (
-        <span style={{ fontSize: "1.15rem" }}>
-          {domToReact(children, options)}
-        </span>
-      )
-    }
-  },
-}
+import awards from "../../../awards.json"
 
 const Header = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
@@ -43,7 +27,7 @@ const EduCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.white.main,
 }))
 
-export default function Presentations() {
+export default function Awards() {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
@@ -58,7 +42,7 @@ export default function Presentations() {
       style={{ marginBottom: "2em" }}
     >
       <Grid item>
-        <Header variant="h2">Presentations</Header>
+        <Header variant="h2">Awards</Header>
       </Grid>
       <Grid
         item
@@ -67,11 +51,11 @@ export default function Presentations() {
         justifyContent="center"
         style={{ marginBottom: "2em", marginTop: "2em" }}
       >
-        {present.data.map((item, i) => {
+        {awards.data.map((item, i) => {
           return (
             <Grid item key={`pst${item}${i}`}>
-              <EduCard>
-                <CardMedia component="img" height="300" image={item.image} />
+              <EduCard style={{ maxWidth: "35rem" }}>
+                <CardMedia component="img" height="400" image={item.image} />
                 <CardContent>
                   <Typography
                     variant="h5"
@@ -80,21 +64,23 @@ export default function Presentations() {
                       color: theme.palette.secondary.main,
                     }}
                   >
-                    {parse(item.title, options)}
+                    {item.title}
                   </Typography>
                   <Typography variant="h5" fontSize="1.2rem">
-                    {item.location}
+                    {parse(item.organization)}
                   </Typography>
                   <Typography>{item.date}</Typography>
+                  <br />
+                  <Typography>{parse(item.description)}</Typography>
                 </CardContent>
                 <CardActions>
                   <Button
                     size="large"
                     component={Link}
-                    href={item.file}
+                    href="/assets/rv_award.webp"
                     target="_blank"
                   >
-                    Go To Slides
+                    Go To Award Certificate
                   </Button>
                 </CardActions>
               </EduCard>

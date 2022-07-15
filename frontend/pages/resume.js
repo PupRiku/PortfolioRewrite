@@ -13,6 +13,7 @@ import Technical from "../src/components/resume/Technical"
 import Jobs from "../src/components/resume/Jobs"
 import Education from "../src/components/resume/Education"
 import Presentations from "../src/components/resume/Presentations"
+import Awards from "../src/components/resume/Awards"
 
 const MainContainer = styled(Grid)(({ theme }) => ({
   [theme.breakpoints.down("sm")]: {
@@ -97,6 +98,7 @@ export default function Resume() {
         <Jobs />
         <Education />
         <Presentations />
+        <Awards />
       </Grid>
     </MainContainer>
   )
