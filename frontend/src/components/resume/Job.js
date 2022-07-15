@@ -9,11 +9,6 @@ import AccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
 import parse from "html-react-parser"
 
-const AccordionTitle = styled(Typography)({
-  flexShrink: 0,
-  margin: "auto",
-})
-
 export default function Job({
   company,
   location,
