@@ -1,0 +1,25 @@
+{
+  "data": [
+    {
+      "image": "assets/presentation_gps.webp",
+      "title": "The New Student GPS:<br />A Digital Experience to Ease Transition",
+      "location": "NODA Annual Conference | Houston, TX",
+      "date": "October 2019",
+      "file": "/files/slides_gps.pdf"
+    },
+    {
+      "image": "assets/presentation_sprint.webp",
+      "title": "SPRINT! Tackle big problems in a week<br /><span class=\"subtitle\">(with  Phyllis Treige, Jess Jones, Tom Jordan & Tamra Dagnon)</span>",
+      "location": "IT Professionals Conference | Madison, WI",
+      "date": "June 2019",
+      "file": "/files/slides_sprint_itpc.pdf"
+    },
+    {
+      "image": "assets/presentation_no_ux.webp",
+      "title": "No (User) Experience Necessary:<br />Digital Experiences by Non-Designers",
+      "location": "NODA Region V Conference | Des Moines, IA",
+      "date": "March 2019",
+      "file": "/files/slides_no_ux.pdf"
+    }
+  ]
+}

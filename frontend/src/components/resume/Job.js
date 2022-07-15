@@ -1,5 +1,5 @@
 import React from "react"
-import { styled, useTheme } from "@mui/material/styles"
+import { useTheme } from "@mui/material/styles"
 import Typography from "@mui/material/Typography"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import Grid from "@mui/material/Grid"
