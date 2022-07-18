@@ -1,20 +1,44 @@
 import React from "react"
-import Articles from "../../components/articles"
-import Layout from "../../components/layout"
-import Seo from "../../components/seo"
+import Articles from "../../src/components/blog/articles"
+import Seo from "../../src/components/blog/seo"
 import { fetchAPI } from "../../lib/api"
+import { styled, useTheme } from "@mui/material/styles"
+import useMediaQuery from "@mui/material/useMediaQuery"
+import Grid from "@mui/material/Grid"
+import Typography from "@mui/material/Typography"
+import { LazyLoadImage } from "react-lazy-load-image-component"
 
-const Blog = ({ articles, categories, homepage }) => {
+import Link from "../../src/Link"
+
+const MainContainer = styled(Grid)(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    marginTop: "3em",
+  },
+}))
+
+const Title = styled(Typography)(({ theme }) => ({
+  [theme.breakpoints.down("md")]: {
+    fontSize: "4.25rem",
+  },
+}))
+
+const Blog = ({ articles, homepage }) => {
+  const theme = useTheme()
+
+  const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
+  const matchesSM = useMediaQuery(theme.breakpoints.down("md"))
+  const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
+
   return (
-    <Layout categories={categories}>
+    <MainContainer container direction="column">
       <Seo seo={homepage.attributes.seo} />
-      <div className="uk-section">
-        <div className="uk-container uk-container-large">
-          <h1>{homepage.attributes.hero.title}</h1>
-          <Articles articles={articles} />
-        </div>
-      </div>
-    </Layout>
+      <Grid item md style={{ marginBottom: matchesSM ? "2em" : "4em" }}>
+        <Title variant="h1" align="center">
+          {homepage.attributes.hero.title}
+        </Title>
+        <Articles articles={articles} />
+      </Grid>
+    </MainContainer>
   )
 }
 

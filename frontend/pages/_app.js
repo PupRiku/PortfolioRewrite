@@ -10,7 +10,6 @@ import Fonts from "../src/ui/Fonts"
 import Header from "../src/ui/Header"
 import Footer from "../src/ui/Footer"
 import App from "next/app"
-import "../assets/css/style.css"
 import { createContext } from "react"
 import { fetchAPI } from "../lib/api"
 

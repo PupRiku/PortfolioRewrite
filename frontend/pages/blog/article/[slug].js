@@ -1,8 +1,7 @@
 import Moment from "react-moment"
 import ReactMarkdown from "react-markdown"
 
-import Seo from "../../../components/seo"
-import Layout from "../../../components/layout"
+import Seo from "../../../src/components/blog/seo"
 
 import { fetchAPI } from "../../../lib/api"
 import { getStrapiMedia } from "../../../lib/media"
@@ -18,7 +17,7 @@ const Article = ({ article, categories }) => {
   }
 
   return (
-    <Layout categories={categories.data}>
+    <>
       <Seo seo={seo} />
       <div
         id="banner"
@@ -65,7 +64,7 @@ const Article = ({ article, categories }) => {
           </div>
         </div>
       </div>
-    </Layout>
+    </>
   )
 }
 
