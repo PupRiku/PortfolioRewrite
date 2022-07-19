@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "jobs",
+  "info": {
+    "singularName": "job",
+    "pluralName": "jobs",
+    "displayName": "Job",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "text"
+    },
+    "duration": {
+      "type": "text"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

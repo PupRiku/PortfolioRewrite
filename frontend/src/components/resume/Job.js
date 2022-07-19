@@ -7,7 +7,7 @@ import Accordion from "@mui/material/Accordion"
 import AccordionSummary from "@mui/material/AccordionSummary"
 import AccordionDetails from "@mui/material/AccordionDetails"
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore"
-import parse from "html-react-parser"
+import ReactHtmlParser from "react-html-parser"
 
 export default function Job({
   company,
@@ -50,7 +50,7 @@ export default function Job({
             align="center"
             style={{ width: "30em", flexShrink: 0, margin: "auto" }}
           >
-            {parse(title)}
+            {ReactHtmlParser(title)}
           </Typography>
           <Typography
             component={"div"}
@@ -62,7 +62,7 @@ export default function Job({
               margin: "auto 1em auto auto",
             }}
           >
-            {parse(duration)}
+            {ReactHtmlParser(duration)}
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
@@ -71,7 +71,7 @@ export default function Job({
             variant="body1"
             style={{ maxWidth: "90em", margin: "auto" }}
           >
-            {parse(description)}
+            {ReactHtmlParser(description)}
           </Typography>
         </AccordionDetails>
       </Accordion>

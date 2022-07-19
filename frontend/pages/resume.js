@@ -7,6 +7,8 @@ import Grid from "@mui/material/Grid"
 import Typography from "@mui/material/Typography"
 import Button from "@mui/material/Button"
 
+import { fetchAPI } from "../lib/api"
+
 import Summary from "../src/components/resume/Summary"
 import Experience from "../src/components/resume/Expertise"
 import Technical from "../src/components/resume/Technical"
@@ -42,7 +44,7 @@ const ResumeButton = styled(Button)(({ theme }) => ({
   },
 }))
 
-export default function Resume() {
+export default function Resume({ jobs }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
@@ -95,11 +97,23 @@ export default function Resume() {
         <Summary />
         <Experience />
         <Technical />
-        <Jobs />
+        <Jobs jobs={jobs} />
         <Education />
         <Presentations />
         <Awards />
       </Grid>
     </MainContainer>
   )
+}
+
+export async function getStaticProps() {
+  // Run API calls in parallel
+  const [jobsRes] = await Promise.all([fetchAPI("/jobs", { populate: "*" })])
+
+  return {
+    props: {
+      jobs: jobsRes.data,
+    },
+    revalidate: 1,
+  }
 }

@@ -1,11 +1,10 @@
-import React from "react"
+import React, { useEffect } from "react"
 import { styled, useTheme } from "@mui/material/styles"
 import Typography from "@mui/material/Typography"
 import useMediaQuery from "@mui/material/useMediaQuery"
 import Grid from "@mui/material/Grid"
 
 import Job from "./job"
-import jobs from "../../../jobs.json"
 import exp from "../../../exp.json"
 
 const Header = styled(Typography)(({ theme }) => ({
@@ -14,12 +13,14 @@ const Header = styled(Typography)(({ theme }) => ({
   },
 }))
 
-export default function Jobs() {
+export default function Jobs({ jobs }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
   const matchesSM = useMediaQuery(theme.breakpoints.down("md"))
   const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const chronoJobs = [...jobs].sort((a, b) => parseInt(b.id) - parseInt(a.id))
 
   return (
     <>
@@ -39,14 +40,14 @@ export default function Jobs() {
         justifyContent="center"
         style={{ marginBottom: "2em" }}
       >
-        {jobs.jobs.map((job, i) => (
+        {chronoJobs.map((job, i) => (
           <Job
             key={`job${i}`}
-            company={job.company}
-            location={job.location}
-            title={job.title}
-            duration={job.duration}
-            description={job.description}
+            company={job.attributes.company}
+            location={job.attributes.location}
+            title={job.attributes.title}
+            duration={job.attributes.duration}
+            description={job.attributes.description}
           />
         ))}
       </Grid>
