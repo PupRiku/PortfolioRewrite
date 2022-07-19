@@ -44,7 +44,7 @@ const ResumeButton = styled(Button)(({ theme }) => ({
   },
 }))
 
-export default function Resume({ jobs }) {
+export default function Resume({ jobs, awards }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
@@ -100,7 +100,7 @@ export default function Resume({ jobs }) {
         <Jobs jobs={jobs} />
         <Education />
         <Presentations />
-        <Awards />
+        <Awards awards={awards} />
       </Grid>
     </MainContainer>
   )
@@ -108,10 +108,12 @@ export default function Resume({ jobs }) {
 
 export async function getStaticProps() {
   // Run API calls in parallel
+  const [awardRes] = await Promise.all([fetchAPI("/awards", { populate: "*" })])
   const [jobsRes] = await Promise.all([fetchAPI("/jobs", { populate: "*" })])
 
   return {
     props: {
+      awards: awardRes.data,
       jobs: jobsRes.data,
     },
     revalidate: 1,

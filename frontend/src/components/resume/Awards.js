@@ -10,8 +10,7 @@ import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import CardActions from "@mui/material/CardActions"
 import parse from "html-react-parser"
-
-import awards from "../../../awards.json"
+import { getStrapiMedia } from "../../../lib/media"
 
 const Header = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
@@ -27,12 +26,16 @@ const EduCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.white.main,
 }))
 
-export default function Awards() {
+export default function Awards({ awards }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
   const matchesSM = useMediaQuery(theme.breakpoints.down("md"))
   const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const chronoAwards = [...awards].sort(
+    (a, b) => parseInt(b.id) - parseInt(a.id)
+  )
 
   return (
     <Grid
@@ -51,11 +54,15 @@ export default function Awards() {
         justifyContent="center"
         style={{ marginBottom: "2em", marginTop: "2em" }}
       >
-        {awards.data.map((item, i) => {
+        {chronoAwards.map((award, i) => {
           return (
-            <Grid item key={`pst${item}${i}`}>
+            <Grid item key={`pst${award}${i}`}>
               <EduCard style={{ maxWidth: "35rem" }}>
-                <CardMedia component="img" height="400" image={item.image} />
+                <CardMedia
+                  component="img"
+                  height="400"
+                  image={getStrapiMedia(award.attributes.image)}
+                />
                 <CardContent>
                   <Typography
                     component={"div"}
@@ -65,21 +72,23 @@ export default function Awards() {
                       color: theme.palette.secondary.main,
                     }}
                   >
-                    {item.title}
+                    {award.attributes.title}
                   </Typography>
                   <Typography component={"div"} variant="h5" fontSize="1.2rem">
-                    {parse(item.organization)}
+                    {parse(award.attributes.organization)}
                   </Typography>
-                  <Typography component={"div"}>{item.date}</Typography>
                   <Typography component={"div"}>
-                    {parse(item.description)}
+                    {award.attributes.date}
+                  </Typography>
+                  <Typography component={"div"}>
+                    {parse(award.attributes.description)}
                   </Typography>
                 </CardContent>
                 <CardActions>
                   <Button
                     size="large"
                     component={Link}
-                    href="/assets/rv_award.webp"
+                    href={getStrapiMedia(award.attributes.file)}
                     target="_blank"
                   >
                     Go To Award Certificate
