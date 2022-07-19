@@ -6,8 +6,7 @@ import Grid from "@mui/material/Grid"
 import Card from "@mui/material/Card"
 import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
-
-import edu from "../../../edu.json"
+import { getStrapiMedia } from "../../../lib/media"
 
 const Header = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
@@ -23,12 +22,14 @@ const EduCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.white.main,
 }))
 
-export default function Education() {
+export default function Education({ edus }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
   const matchesSM = useMediaQuery(theme.breakpoints.down("md"))
   const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const chronoEdus = [...edus].sort((a, b) => parseInt(b.id) - parseInt(a.id))
 
   return (
     <Grid
@@ -47,10 +48,14 @@ export default function Education() {
         justifyContent="center"
         style={{ marginBottom: "2em", marginTop: "2em" }}
       >
-        {edu.data.map((item, i) => (
-          <Grid item key={`edu${item}${i}`}>
+        {chronoEdus.map((edu, i) => (
+          <Grid item key={`edu${edu}${i}`}>
             <EduCard>
-              <CardMedia component="img" height="200" image={item.image} />
+              <CardMedia
+                component="img"
+                height="200"
+                image={getStrapiMedia(edu.attributes.image)}
+              />
               <CardContent>
                 <Typography
                   variant="h5"
@@ -59,13 +64,13 @@ export default function Education() {
                     color: theme.palette.secondary.main,
                   }}
                 >
-                  {item.school}
+                  {edu.attributes.school}
                 </Typography>
                 <Typography variant="h5" fontSize="1.2rem">
-                  {item.degree}
+                  {edu.attributes.degree}
                 </Typography>
-                <Typography>{item.duration}</Typography>
-                <Typography>{item.location}</Typography>
+                <Typography>{edu.attributes.duration}</Typography>
+                <Typography>{edu.attributes.location}</Typography>
               </CardContent>
             </EduCard>
           </Grid>
