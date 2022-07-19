@@ -29,6 +29,7 @@
     "qs": "^6.11.0",
     "react": "latest",
     "react-dom": "latest",
+    "react-html-parser": "^2.0.2",
     "react-lazy-load-image-component": "^1.5.4",
     "react-markdown": "^8.0.3",
     "react-moment": "^1.1.2"

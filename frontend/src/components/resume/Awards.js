@@ -58,6 +58,7 @@ export default function Awards() {
                 <CardMedia component="img" height="400" image={item.image} />
                 <CardContent>
                   <Typography
+                    component={"div"}
                     variant="h5"
                     style={{
                       fontWeight: "700",
@@ -66,12 +67,13 @@ export default function Awards() {
                   >
                     {item.title}
                   </Typography>
-                  <Typography variant="h5" fontSize="1.2rem">
+                  <Typography component={"div"} variant="h5" fontSize="1.2rem">
                     {parse(item.organization)}
                   </Typography>
-                  <Typography>{item.date}</Typography>
-                  <br />
-                  <Typography>{parse(item.description)}</Typography>
+                  <Typography component={"div"}>{item.date}</Typography>
+                  <Typography component={"div"}>
+                    {parse(item.description)}
+                  </Typography>
                 </CardContent>
                 <CardActions>
                   <Button
