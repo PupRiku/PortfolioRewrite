@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "additional_experiences",
+  "info": {
+    "singularName": "additional-experience",
+    "pluralName": "additional-experiences",
+    "displayName": "Additional Experience",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "location": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

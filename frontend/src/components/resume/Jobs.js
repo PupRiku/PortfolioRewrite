@@ -5,7 +5,6 @@ import useMediaQuery from "@mui/material/useMediaQuery"
 import Grid from "@mui/material/Grid"
 
 import Job from "./job"
-import exp from "../../../exp.json"
 
 const Header = styled(Typography)(({ theme }) => ({
   [theme.breakpoints.down("md")]: {
@@ -13,7 +12,7 @@ const Header = styled(Typography)(({ theme }) => ({
   },
 }))
 
-export default function Jobs({ jobs }) {
+export default function Jobs({ jobs, exps }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
@@ -21,6 +20,7 @@ export default function Jobs({ jobs }) {
   const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
 
   const chronoJobs = [...jobs].sort((a, b) => parseInt(b.id) - parseInt(a.id))
+  const chronoExps = [...exps].sort((a, b) => parseInt(b.id) - parseInt(a.id))
 
   return (
     <>
@@ -61,7 +61,7 @@ export default function Jobs({ jobs }) {
           <Header variant="h2">Additional Experience</Header>
         </Grid>
       </Grid>
-      {exp.exp.map((item, i) => (
+      {chronoExps.map((exp, i) => (
         <Grid
           item
           container
@@ -72,12 +72,12 @@ export default function Jobs({ jobs }) {
         >
           <Grid item>
             <Typography variant="h4" component={"span"}>
-              {item.title}
+              {exp.attributes.title}
             </Typography>
           </Grid>
           <Grid item>
             <Typography variant="body1" component={"span"}>
-              {item.location}
+              {exp.attributes.location}
             </Typography>
           </Grid>
         </Grid>
