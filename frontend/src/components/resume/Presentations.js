@@ -10,8 +10,7 @@ import CardContent from "@mui/material/CardContent"
 import CardMedia from "@mui/material/CardMedia"
 import CardActions from "@mui/material/CardActions"
 import parse, { domToReact } from "html-react-parser"
-
-import present from "../../../present.json"
+import { getStrapiMedia } from "../../../lib/media"
 
 const options = {
   replace: ({ attribs, children }) => {
@@ -43,12 +42,16 @@ const EduCard = styled(Card)(({ theme }) => ({
   backgroundColor: theme.palette.white.main,
 }))
 
-export default function Presentations() {
+export default function Presentations({ presentations }) {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
   const matchesSM = useMediaQuery(theme.breakpoints.down("md"))
   const matchesXS = useMediaQuery(theme.breakpoints.down("sm"))
+
+  const chronoPresentations = [...presentations].sort(
+    (a, b) => parseInt(b.id) - parseInt(a.id)
+  )
 
   return (
     <Grid
@@ -67,11 +70,15 @@ export default function Presentations() {
         justifyContent="center"
         style={{ marginBottom: "2em", marginTop: "2em" }}
       >
-        {present.data.map((item, i) => {
+        {chronoPresentations.map((presentation, i) => {
           return (
-            <Grid item key={`pst${item}${i}`}>
+            <Grid item key={`pst${presentation}${i}`}>
               <EduCard>
-                <CardMedia component="img" height="300" image={item.image} />
+                <CardMedia
+                  component="img"
+                  height="300"
+                  image={getStrapiMedia(presentation.attributes.image)}
+                />
                 <CardContent>
                   <Typography
                     variant="h5"
@@ -80,18 +87,18 @@ export default function Presentations() {
                       color: theme.palette.secondary.main,
                     }}
                   >
-                    {parse(item.title, options)}
+                    {parse(presentation.attributes.title, options)}
                   </Typography>
                   <Typography variant="h5" fontSize="1.2rem">
-                    {item.location}
+                    {presentation.attributes.location}
                   </Typography>
-                  <Typography>{item.date}</Typography>
+                  <Typography>{presentation.attributes.date}</Typography>
                 </CardContent>
                 <CardActions>
                   <Button
                     size="large"
                     component={Link}
-                    href={item.file}
+                    href={getStrapiMedia(presentation.attributes.file)}
                     target="_blank"
                   >
                     Go To Slides
