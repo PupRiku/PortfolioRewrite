@@ -1,6 +1,5 @@
 import React from "react"
 import Articles from "../../src/components/blog/articles"
-import Seo from "../../src/components/blog/seo"
 import { fetchAPI } from "../../lib/api"
 import { styled, useTheme } from "@mui/material/styles"
 import useMediaQuery from "@mui/material/useMediaQuery"
@@ -22,7 +21,7 @@ const Title = styled(Typography)(({ theme }) => ({
   },
 }))
 
-const Blog = ({ articles, homepage }) => {
+const Blog = ({ articles }) => {
   const theme = useTheme()
 
   const matchesMD = useMediaQuery(theme.breakpoints.down("lg"))
@@ -31,10 +30,9 @@ const Blog = ({ articles, homepage }) => {
 
   return (
     <MainContainer container direction="column">
-      <Seo seo={homepage.attributes.seo} />
       <Grid item md style={{ marginBottom: matchesSM ? "2em" : "4em" }}>
         <Title variant="h1" align="center">
-          {homepage.attributes.hero.title}
+          Blog
         </Title>
         <Articles articles={articles} />
       </Grid>
@@ -44,22 +42,13 @@ const Blog = ({ articles, homepage }) => {
 
 export async function getStaticProps() {
   // Run API calls in parallel
-  const [articlesRes, categoriesRes, homepageRes] = await Promise.all([
-    fetchAPI("/articles", { populate: ["image", "category"] }),
-    fetchAPI("/categories", { populate: "*" }),
-    fetchAPI("/homepage", {
-      populate: {
-        hero: "*",
-        seo: { populate: "*" },
-      },
-    }),
+  const [articlesRes] = await Promise.all([
+    fetchAPI("/articles", { populate: "*" }),
   ])
 
   return {
     props: {
       articles: articlesRes.data,
-      categories: categoriesRes.data,
-      homepage: homepageRes.data,
     },
     revalidate: 1,
   }
