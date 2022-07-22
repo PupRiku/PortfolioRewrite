@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_project_technologies",
+  "info": {
+    "displayName": "technology",
+    "icon": "atom"
+  },
+  "options": {},
+  "attributes": {
+    "tooltip": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false,
+      "required": true
+    }
+  }
+}

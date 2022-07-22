@@ -76,6 +76,12 @@
       "type": "uid",
       "required": true,
       "targetField": "title"
+    },
+    "tools": {
+      "type": "component",
+      "repeatable": true,
+      "component": "project.technology",
+      "required": true
     }
   }
 }
