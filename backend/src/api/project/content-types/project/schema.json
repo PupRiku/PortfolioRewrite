@@ -49,21 +49,21 @@
     },
     "challenge": {
       "type": "richtext",
-      "required": true
+      "required": false
     },
     "statement": {
       "type": "richtext",
-      "required": true
+      "required": false
     },
     "solution": {
       "type": "component",
       "repeatable": true,
       "component": "project.section",
-      "required": true
+      "required": false
     },
     "results": {
       "type": "richtext",
-      "required": true
+      "required": false
     },
     "recognition": {
       "type": "richtext"
