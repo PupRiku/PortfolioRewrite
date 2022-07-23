@@ -82,6 +82,18 @@
       "repeatable": true,
       "component": "project.technology",
       "required": true
+    },
+    "category": {
+      "type": "enumeration",
+      "enum": [
+        "ux",
+        "coding",
+        "graphic"
+      ],
+      "required": true
+    },
+    "projectLink": {
+      "type": "string"
     }
   }
 }
